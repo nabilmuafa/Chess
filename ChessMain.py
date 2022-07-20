@@ -71,7 +71,7 @@ def main():
             if gs.checkmate:
                 winner = "White" if not gs.whiteToMove else "Black"
                 print ("The game is finished. The winner is " + winner + ". The game takes " + \
-                        str(len(gs.moveLog)) + " moves. Thanks for playing! GG Gaming")
+                        str(len(gs.moveLog)) + " moves. Thanks for playing!")
                 running = False
             move_made = False
 
