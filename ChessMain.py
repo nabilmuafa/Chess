@@ -33,8 +33,8 @@ def main():
     move_made = False #flag variable for when a valid move is made, supaya ga regenerate vmoves b4 player makes move
     load_images() #sekali aja sblm while loop
     running = True #nandain kalo game udah jalan(??)
-    selectedSq = () #keeping track of last click of user (row,col)
-    playerClick = [] #keep track of the player clicks, list of two tuples
+    selected_sq = () #keeping track of last click of user (row,col)
+    player_click = [] #keep track of the player clicks, list of two tuples
     while(running):
         for e in pp.event.get():
             if e.type == pp.QUIT:
@@ -44,21 +44,21 @@ def main():
                 location = pp.mouse.get_pos() #lokasi mouse (x,y)
                 col = location[0]//square_size
                 row = location[1]//square_size
-                if selectedSq == (row, col):
-                    selectedSq = () #deselect kalo misal yg dipilih itu kotak yg sama
-                    playerClick = []
+                if selected_sq == (row, col):
+                    selected_sq = () #deselect kalo misal yg dipilih itu kotak yg sama
+                    player_click = []
                 else:
-                    selectedSq = (row, col)
-                    playerClick.append(selectedSq)
-                if len(playerClick) == 2: #kalo ini klik kedua, buat gerakin piece
-                    move = ChessEngine.Move(playerClick[0], playerClick[1], gs.board)
+                    selected_sq = (row, col)
+                    player_click.append(selected_sq)
+                if len(player_click) == 2: #kalo ini klik kedua, buat gerakin piece
+                    move = ChessEngine.Move(player_click[0], player_click[1], gs.board)
                     if move in valid_moves:
                         gs.make_move(move)
                         move_made = True
-                        selectedSq = () #reset user clicks
-                        playerClick = []
+                        selected_sq = () #reset user clicks
+                        player_click = []
                     else:
-                        playerClick = [selectedSq]
+                        player_click = [selected_sq]
             #key handler
             elif e.type == pp.KEYDOWN:
                 if e.key == pp.K_z:
